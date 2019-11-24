@@ -14,9 +14,9 @@ def projects(request):
     context = generate_context('projects')
     return render(request, 'base.html', context)
 
-def blog(request):
-    print('rendering blog page')
-    context = generate_context('blog')
+def github(request):
+    print('rendering github page')
+    context = generate_context('github')
     return render(request, 'base.html', context)
 
 def generate_context(title): 
@@ -26,7 +26,7 @@ def generate_context(title):
     pages = [
         {'title': 'about', 'path': '/'}, 
         {'title': 'projects', 'path': '/projects'}, 
-        {'title': 'blog', 'path': '/blog'}, 
+        {'title': 'github', 'path': '/github'}, 
     ]
     cards = [markdown_to_html(file) for file in glob.glob('content/' + title + "/*.md")]
     return {
