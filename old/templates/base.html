@@ -61,7 +61,7 @@
                 <div class="row">
                     {% for page in pages %}
                     <div class="button-padding col">
-                        <a role="button" class="btn btn-outline-dark {% if page.path == path%}active{% else %}''{% endif %} btn-block" href="{{page.path}}" >{{ page.title|title }}</a>
+                        <a role="button" class="btn btn-outline-dark {% if page.file_name == file_name%}active{% else %}''{% endif %} btn-block" href="{{page.file_name}}" >{{ page.title|title }}</a>
                     </div>
                     {% endfor %}
                 </div>
