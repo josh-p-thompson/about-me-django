@@ -1,0 +1,124 @@
+body {
+    font-family: 'Roboto', sans-serif;;
+    font-weight: 300;
+    color: #36393C;
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family: 'Roboto', sans-serif;; 
+    font-weight: 900;
+    color: #36393C;
+}
+
+h1 {
+    font-size: 290%;
+}
+
+h6 {
+    font-weight: 600;
+}
+
+.name-title {
+    padding-left: 10px;
+    font-size: 4vw;
+}
+
+.icons {
+    margin-bottom: 10px;
+}
+
+.icons a {
+    display: inline-block;
+    height: 3rem;
+    width: 3rem;
+    background-color: #fff;
+    color: #36393C;    
+    border-radius: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 3rem;
+    padding-bottom: 3rem; 
+}
+
+.icons a:hover {
+    background-color: #36393C;   
+    color: #fff;
+}
+
+.button-padding{
+    padding-right:5px;
+    padding-left:5px;
+}
+
+.left-block, .right-block {
+    padding: 40px; 
+    min-width: 300px;
+}
+
+.left-block {
+    position: fixed; 
+    top: 15%;
+}
+
+@media (max-width: 991.98px) {
+    .left-block { 
+        position: relative;
+        top: 0;
+        padding-bottom: 0px;
+    }
+    .name-title {
+        font-size: 8vw;
+    }
+}
+
+.card {
+    min-height: 30rem; 
+    background-color: #F9FAFA;
+    padding: 30px; 
+    margin-bottom: 3rem;
+    border-radius: 0;
+    border-color: transparent;
+    filter: drop-shadow(4px 4px 4px #36393C)
+}
+
+.card-title a {
+    color:inherit;
+}
+
+@media (max-width: 575.98px) {
+    .card {
+        min-height: 20rem;
+    }
+}
+
+.git-icon {
+    text-align: right;
+}
+
+.git-icon a {
+    color: #36393C;  
+    font-size: 1.2rem;
+}
+
+.git-icon a:hover {
+    color: #3456E5;
+}
+
+.projects-card img {
+    margin: auto;
+    padding-top: 40px;
+    filter: drop-shadow(0 0 0.25rem #36393C); 
+}
+
+.blog-card img {
+    margin: auto;
+    padding: 10px;
+    /* filter: drop-shadow(0 0 0.25rem #36393C);  */
+}
+
+.btn .fa {
+    transition: .3s transform ease-in-out;
+}
+
+.btn:not(.collapsed)  span{display:none}
+.btn.collapsed b {display:none}

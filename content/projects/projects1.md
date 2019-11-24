@@ -9,4 +9,4 @@ HTML, CSS, Bootstrap, Python
 <!-- dashes separate top row from bottom row -->
 ---   
 
-![Image](./images/project1.png){: class="project1-img card-img-top" alt="Card image cap"}
+![Image](./static/images/project1.png){: class="project1-img card-img-top" alt="Card image cap"}

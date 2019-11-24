@@ -5,14 +5,17 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 def index(request):
+    print('rendering about page')
     context = generate_context('about')
     return render(request, 'base.html', context)
 
 def projects(request):
+    print('rendering projects page')
     context = generate_context('projects')
     return render(request, 'base.html', context)
 
 def blog(request):
+    print('rendering blog page')
     context = generate_context('blog')
     return render(request, 'base.html', context)
 

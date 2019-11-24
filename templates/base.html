@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <title>
-        Josh Thompson - {{title|title}}
+        Josh Thompson - {{ title|title|safe }}
     </title>
 
     <!-- bootstrap CSS -->
@@ -14,10 +14,10 @@
 
     <!-- fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,900&display=swap" rel="stylesheet">
-    <link href="./fonts/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="./static/fonts/fontawesome-free/css/all.min.css" rel="stylesheet">
 
     <!-- custom css -->
-    <link href="./css/about.css" rel="stylesheet">
+    <link href="./static/css/about.css" rel="stylesheet">
 
 </head> 
 
@@ -43,7 +43,7 @@
                 </div>
                 <div class="row no-gutters">
                     <div class="col-2 align-self-center">
-                        <img class="headshot img-fluid rounded-circle mx-auto mb-2" src="./images/headshot.jpeg" >
+                        <img class="headshot img-fluid rounded-circle mx-auto mb-2" src="./static/images/headshot.jpeg" >
                     </div>
                     <div class="col align-self-center">     
                         <h1 class='name-title'>
@@ -61,7 +61,7 @@
                 <div class="row">
                     {% for page in pages %}
                     <div class="button-padding col">
-                        <a role="button" class="btn btn-outline-dark {% if page.path == path%}active{% else %}''{% endif %} btn-block" href="{{page.path}}" >{{ page.title|title }}</a>
+                        <a role="button" class="btn btn-outline-dark {% if page.path == path%}active{% else %}''{% endif %} btn-block" href="{{ page.path|safe }}" >{{ page.title|title|safe }}</a>
                     </div>
                     {% endfor %}
                 </div>
@@ -73,11 +73,11 @@
                     <div class = '{{ title }}-card card w-100'>
                         <div class='row'>
                             <div class='col'>
-                                {{ card.top }}
+                                {{ card.top|safe }}
                             </div>
                             {% if title == 'projects' %}
                             <div class='git-icon col'>
-                                <a href={{ card.meta.project_link }} target='_blank'>
+                                <a href={{ card.meta.project_link|safe }} target='_blank'>
                                     <i class='fab fa-github'></i>
                                 </a>
                             </div>
@@ -85,7 +85,7 @@
                         </div>
                         <div class='row'>
                             <div class='col'>
-                                {{ card.bottom }}
+                                {{ card.bottom|safe }}
                             </div>
                         </div>
                     </div>
