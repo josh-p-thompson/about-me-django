@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <title>
-        Josh Thompson - {{ title|title|safe }}
+        Josh Thompson - {% block title %}About{% endblock %}
     </title>
 
     <!-- bootstrap CSS -->
@@ -66,22 +66,15 @@
                     {% endfor %}
                 </div>
             </div>
-            <!-- added offset offset-md-6-->
             <div class="right-block col-lg-6 offset-lg-6">
                 {% for card in cards %}
+                {% block card %}
                 <div class ='row'>
                     <div class = '{{ title }}-card card w-100'>
                         <div class='row'>
-                            <div class= {% if title == 'projects' %}'col-9'>
+                            <div class= 'col'>
                                 {{ card.top|safe }}
                             </div>
-                            {% if title == 'projects' %}
-                            <div class='git-icon col'>
-                                <a href={{ card.meta.project_link|safe }} target='_blank'>
-                                    <i class='fab fa-github'></i>
-                                </a>
-                            </div>
-                            {% endif %}
                         </div>
                         <div class='row'>
                             <div class='col'>
@@ -90,6 +83,7 @@
                         </div>
                     </div>
                 </div>
+                {% endblock %}
                 {% endfor %}
             </div>
         </div>

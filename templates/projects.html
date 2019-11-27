@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+Projects
+{% endblock %}
+{% block card %}
+<div class ='row'>
+    <div class = 'project-card card w-100'>
+        <div class='row'>
+            <div class= 'col-9'>
+                <h4 class="card-title">{{ card.repo_name|safe }}</h4>
+                <p class="card-subtitle">{{ card.repo_description|safe }}</p>
+            </div>
+            <div class='git-icon col'>
+                <a href={{ repository_url|safe }} target='_blank'>
+                    <i class='fab fa-github'></i>
+                </a>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col'>
+                {{ card.repo_readme|safe }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
