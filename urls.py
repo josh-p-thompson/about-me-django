@@ -5,6 +5,7 @@ import views
 urlpatterns = [
     path('', views.index),
     path('projects', views.projects),
+    path('blog', views.projects),
 ]
 
 # Boilerplate to include static files

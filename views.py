@@ -3,6 +3,9 @@ import markdown
 import glob
 from django.http import HttpResponse
 from django.shortcuts import render
+import os
+
+github_token = os.environ["GITHUB_TOKEN"]
 
 def index(request):
     print('---------- rendering About')
@@ -15,14 +18,30 @@ def index(request):
     return render(request, 'base.html', context)
 
 def projects(request):
-    print('rendering projects page')
-    context = generate_context('projects')
-    return render(request, 'base.html', context)
+    print('---------- rendering Projects')
+    context = {
+        'title': 'projects',
+        'path': 'projects', 
+        'cards': github_projects(),
+        'pages': pages(),
+    }
+    return render(request, 'projects.html', context)
+
+def blog(request):
+    print('---------- rendering Blog')
+    context = {
+        'title': 'blog',
+        'path': 'blog', 
+        'cards': [markdown_cards(file) for file in glob.glob('content/blog/*.md')],
+        'pages': pages(),
+    }
+    return render(request, 'blog.html', context)
 
 def pages(): 
     return [
         {'title': 'about', 'path': '/'}, 
-        {'title': 'projects', 'path': '/projects'}, 
+        {'title': 'projects', 'path': 'projects'}, 
+        {'title': 'blog', 'path': 'blog'}, 
     ]
 
 def markdown_cards(file): 
@@ -47,24 +66,27 @@ def readme_to_html(url):
     return md.convert(data)
 
 def github_projects(): 
+    """
+    calls github API to return a list of all repos 
+    then loops through repos to extract repo name, url, description, updated time
+    calls github API for each repo to get readme url and converts it to html
+    returns list of repo dictionaries with extracted data
+    """
     base_url = 'https://api.github.com'
     repos_url = '/users/josh-p-thompson/repos'
     params = {'affiliation': ['owner'], 'sort': 'updated'}
-    
-    response = requests.get(base_url + repos_url, params=params)
+    auth = ('josh-p-thompson', github_token)    
+    response = requests.get(base_url + repos_url, params=params, auth=auth)
     repos_json = response.json()
     repos = []
     for repo in repos_json: 
-        response = requests.get(base_url + f"/repos/josh-p-thompson/{repo['name']}/readme")
+        response = requests.get(base_url + f"/repos/josh-p-thompson/{repo['name']}/readme", auth=auth)
         repo_content = response.json()
         repos.append({
             'repo_name': repo['name'], 
-            'repo_url': repo['url'], 
+            'repo_url': repo['html_url'], 
             'repo_description': repo['description'],
-            'created_at': repo['created_at'], 
             'updated_at': repo['updated_at'],
             'repo_readme': readme_to_html(repo_content['download_url']),
         })
     return repos
-
-print(github_projects())
