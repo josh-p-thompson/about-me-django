@@ -4,6 +4,7 @@ import glob
 from django.http import HttpResponse
 from django.shortcuts import render
 import os
+from datetime import datetime
 
 github_token = os.environ["GITHUB_TOKEN"]
 
@@ -86,7 +87,7 @@ def github_projects():
             'repo_name': repo['name'], 
             'repo_url': repo['html_url'], 
             'repo_description': repo['description'],
-            'updated_at': repo['updated_at'],
+            'updated_at': datetime.strptime(repo['updated_at'], '%Y-%m-%dT%H:%M:%SZ'),
             'repo_readme': readme_to_html(repo_content['download_url']),
         })
     return repos
