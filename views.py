@@ -6,8 +6,6 @@ from django.shortcuts import render
 import os
 from datetime import datetime
 
-github_token = os.environ["GITHUB_TOKEN"]
-
 def index(request):
     print('---------- rendering About')
     context = {
@@ -76,12 +74,11 @@ def github_projects():
     base_url = 'https://api.github.com'
     repos_url = '/users/josh-p-thompson/repos'
     params = {'affiliation': ['owner'], 'sort': 'updated'}
-    auth = ('josh-p-thompson', github_token)    
-    response = requests.get(base_url + repos_url, params=params, auth=auth)
+    response = requests.get(base_url + repos_url, params=params)
     repos_json = response.json()
     repos = []
     for repo in repos_json: 
-        response = requests.get(base_url + f"/repos/josh-p-thompson/{repo['name']}/readme", auth=auth)
+        response = requests.get(base_url + f"/repos/josh-p-thompson/{repo['name']}/readme")
         repo_content = response.json()
         repos.append({
             'repo_name': repo['name'], 
